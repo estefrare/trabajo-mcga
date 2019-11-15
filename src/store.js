@@ -73,7 +73,7 @@ export const handleLogin = (email, password) => {
     })
 
     const options = {
-      baseURL: 'http://localhost:4000/',
+      baseURL: 'https://trabajo-mcga-server-frare.herokuapp.com/',
       timeout: 25000,
       method: 'POST',
       headers: {
@@ -81,19 +81,19 @@ export const handleLogin = (email, password) => {
       },
     }
 
-    return fetch(`http://localhost:4000/login`, { ...options, body: JSON.stringify({ email, password }) })
+    return fetch(`https://trabajo-mcga-server-frare.herokuapp.com/login`, { ...options, body: JSON.stringify({ email, password }) })
       .then(res => res.json())
       .then(data => {
         if (!data.success) {
           return Promise.reject(data)
         }
-        dispatch({
+        return dispatch({
           type: 'LOGIN_SUCCESS',
           payload: data,
         })
       })
       .catch(error => {
-        dispatch({
+        return dispatch({
           type: 'LOGIN_ERROR',
           payload: error,
         })
